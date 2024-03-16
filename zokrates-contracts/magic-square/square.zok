@@ -1,4 +1,5 @@
-def main(private field[9] a, field sum) {
+def main(private field[9] a) {
+    field sum = 101;
     // horizontal
     assert(a[0] + a[1] + a[2] == sum);
     assert(a[3] + a[4] + a[5] == sum);

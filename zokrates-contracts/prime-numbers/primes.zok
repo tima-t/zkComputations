@@ -10,7 +10,7 @@ def is_prime(u32 n) -> bool {
 }
 
 def main(private u32 p){
-    u32 min_val = 100;
+    u32 min_val = 1000;
     assert(p > min_val);
     bool prime = is_prime(p);
     assert(prime);

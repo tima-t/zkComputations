@@ -1,0 +1,15 @@
+{
+  "inputs": [
+    {
+      "name": "p",
+      "public": false,
+      "type": "u32"
+    }
+  ],
+  "output": {
+    "type": "tuple",
+    "components": {
+      "elements": []
+    }
+  }
+}
