@@ -149,6 +149,9 @@ contract Verifier {
     address public  admin;
     address public winner;
     string public solution;
+    constructor() {
+      admin = msg.sender;
+    }
     struct VerifyingKey {
         Pairing.G1Point alpha;
         Pairing.G2Point beta;

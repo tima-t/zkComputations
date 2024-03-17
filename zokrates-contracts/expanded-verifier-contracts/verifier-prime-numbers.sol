@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT 
+////////////
 // This file is MIT Licensed.
 //
 // Copyright 2017 Christian Reitwiessner
@@ -146,9 +146,12 @@ library Pairing {
 
 contract Verifier {
     using Pairing for *;
-    address public admin;
+    address public  admin;
     address public winner;
     string public solution;
+    constructor() {
+      admin = msg.sender;
+    }
     struct VerifyingKey {
         Pairing.G1Point alpha;
         Pairing.G2Point beta;
@@ -162,12 +165,12 @@ contract Verifier {
         Pairing.G1Point c;
     }
     function verifyingKey() pure internal returns (VerifyingKey memory vk) {
-        vk.alpha = Pairing.G1Point(uint256(0x03a9be25c0015fd3613190a5bd4eabf16dd0c5ced4162d298f993e2566b2d8cc), uint256(0x1e1cfbc04e658c2b4a9bc0f061849592aca137f49c2c78a87a0b00e772ae681f));
-        vk.beta = Pairing.G2Point([uint256(0x00292b4c18d92f70e90a1149434ea93c9ef1c2be88fc335d8099a0454cd9fa97), uint256(0x2ebff11e411f4f7f672ad7b983be9a28b1a0e8182ec27ee4fa97b2d84a1da037)], [uint256(0x200fb0c4706667bd859a4c9bcf25a9fb742449702c1d134299b6d66c72de65ea), uint256(0x2b2c5bc54d066604903ef5eb080db76927e5a1d138414fd2845047afeba081f0)]);
-        vk.gamma = Pairing.G2Point([uint256(0x060c7246c991aca0142e2f095297e8d29e2b39ecc5c78c7fe2542f21f92301cb), uint256(0x20149ddc58d3b3190e775d90caa8049db1b14ae86f5081ba42935585089b5678)], [uint256(0x21ca40e1784ba0d8eaa63bd026e7f13335987ed72d1824a9535ba3ad5d141164), uint256(0x03863feb9a19bf19976530db416bc07a838d937d5bd2322fd198635065afa734)]);
-        vk.delta = Pairing.G2Point([uint256(0x13ad46b6024a9cb57c52109b38e35770bafdc6e60825c90ec849057c78fd11c6), uint256(0x06bcabbb7c3b35379acd1397004fb10159dcc735104acd42f5f39a89292fecf2)], [uint256(0x29a74dc30b5288a1e5a5492f78dc550bea911570b691130271a1b17132309028), uint256(0x0243dac3c8d3c96df5453c9e0b88ffd5a93f11468b48326dad52b354ce05e686)]);
+        vk.alpha = Pairing.G1Point(uint256(0x0e225d7250e936fd1111d75f8a2f6bc7d8a53bb72bc5f9094b7d3853956d4c04), uint256(0x14eadfbb71d9143911911d0ad74050c2bd03406f85dd135a79b4a9ef8da85464));
+        vk.beta = Pairing.G2Point([uint256(0x259c33da4bf1c30ed85a0673832a1703eb93d61e2ef53ae6ccf44e0c9cdd936d), uint256(0x1fcf3cfe4d60373ab747b16a52714310cd7d6983d864bf898bda16eb4d7f982d)], [uint256(0x17b678d4c4ae4cb94bfd5ddef346026700bec27b7e94ba5c77af5f8419934554), uint256(0x2f008469a20e81b50be6e9c1bec0fd3eb017e95ffd4795720aa2a1c66e975476)]);
+        vk.gamma = Pairing.G2Point([uint256(0x0664869058e29fbb87a8449c8867104332f76eb881d2feacceab181cc1ebce72), uint256(0x1aa5642e96e6625c9bd996375d468b7c3dbaf55636e4b3437b68468b26b4ce2f)], [uint256(0x05d1f6508807e5d121c59f8090cb135028d9db1a73debcf93fea36dd1ee7079f), uint256(0x01ebcc221decce48f5fc6990a4893348ea278a2bd0d75070c31171bb10eb54fe)]);
+        vk.delta = Pairing.G2Point([uint256(0x271dc7e5645ffbdb625f3d74e3f3ae05c5fa6125f3f1b0e406dc24c5c55a2a9b), uint256(0x0d2b9054b358953b9c1c225f8bb882f82fb01b84050bf658562ceeb99bc4eda4)], [uint256(0x0fb03305507399e0ef21d56c10ec5ac9dcabc057d946c91477e8104ce293498d), uint256(0x1fc27b5415bc53c8bdfb314e886cd72e39e9369ab69578eabf0b3abfcb56b2dc)]);
         vk.gamma_abc = new Pairing.G1Point[](1);
-        vk.gamma_abc[0] = Pairing.G1Point(uint256(0x25281fefb2122b87891aee4b9e6b51e4daaa1aeb2eaa1cdbd1e8c1bff6022bde), uint256(0x0008c1026a2f7d63465862a051d7b5027a581f24cc0c66efa34aadb33007b8e6));
+        vk.gamma_abc[0] = Pairing.G1Point(uint256(0x181e822a0c1aaf19ecb009e930d9f54a43afb2fe76d2de3f757077c880f621d6), uint256(0x11cd323443226f94a5b3a8de82b738f1f0a12a2c1e512ce30f976608eec0bbe2));
     }
     function verify(uint[] memory input, Proof memory proof) internal view returns (uint) {
         uint256 snark_scalar_field = 21888242871839275222246405745257275088548364400416034343698204186575808495617;
@@ -198,7 +201,7 @@ contract Verifier {
     //         return false;
     //     }
     // }
-    function verifyTx(
+      function verifyTx(
             Proof memory proof
         ) public returns (bool r) {
         require(winner == address(0), "Winner exists");
@@ -237,4 +240,5 @@ contract Verifier {
         winner = address(0);
         require(success, "Transfer failed.");
     }
+
 }
