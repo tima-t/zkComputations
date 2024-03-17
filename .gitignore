@@ -1,3 +1,5 @@
 *.key
 out*
 witnes*
+node_modules/
+.next/

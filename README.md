@@ -1,9 +1,27 @@
 # zkComputations-contracts
-zero-knowledge proof contracts based on zokrates
+zero-knowledge verifier contracts based on zokrates
 
+# Install Zokrates and generate proofs
+```bash
+curl -LSfs get.zokrat.es | sh
+# Set export path
+export PATH=$PATH:/Users/tima_t/.zokrates/bin
+cd zokrates-contracts/prime-numbers
+# compile
+zokrates compile -i primes.zok
+# perform the setup phase
+zokrates setup
+# export a solidity verifier
+zokrates export-verifier
+# execute the program
+zokrates compute-witness -a 1087
+# generate a proof of computation
+zokrates generate-proof
+# or verify natively
+zokrates verify
+```
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+## Start Fe App
 ## Getting Started
 
 First, run the development server:
