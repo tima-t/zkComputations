@@ -16,6 +16,14 @@ Large Computations Market based on zero-knowledge proofs.
 </ol>
 
 # Diagrams
+<h2> Sequence Diagram </h2>
+<img src="https://ascendia.fra1.cdn.digitaloceanspaces.com/ZkComputations.drawio.png" />
+
+<h2> Payoff Matrix (Solution Seeker and Problem Solver) </h2>
+<img src=https://ascendia.fra1.cdn.digitaloceanspaces.com/PayOffTable.png />
+There are 2 Nash Equilibrium at (X,A) = (0,0) and (Z,C) = (2,2).
+In this case (Z,C) has better fiancial outcome for both sides. 
+
 
 
 
