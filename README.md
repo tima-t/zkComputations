@@ -1,5 +1,10 @@
 # zkComputations
 Large Computations Market based on zero-knowledge proofs.
+The core algorithm is based on Zero-Knowledge Succinct Non-Interactive Argument of Knowledge (SNARKs) generations and verification in EVM based smart contracts.
+
+# Why do we use Zero-Knowledge proofs?
+Zero-Knowledge proofs are suitable for large computation problems, because we can quickly and on-chain verify wheter a given solution is correct or wrong.
+It could also give more flexibility to the Problem Solver and protect him from front-running.
 
 # How it works? 
 <ol>
