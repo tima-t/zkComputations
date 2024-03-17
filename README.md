@@ -1,5 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# zkComputations
+Large Computations Market based on zero-knowledge proofs.
+The core algorithm is based on Zero-Knowledge Succinct Non-Interactive Argument of Knowledge (SNARKs) generations and verification in EVM based smart contracts.
 
+# Why do we use Zero-Knowledge proofs?
+Zero-Knowledge proofs are suitable for large computation problems, because we can quickly and on-chain verify wheter a given solution is correct or wrong.
+It could also give more flexibility to the Problem Solver and protect him from front-running.
+
+# How it works? 
+<ol>
+<li>Solution Seeker X wants to find the answer of Large Computation Problem.</li>
+<li>X generates a verifier contract and deploys it</li>
+<li>The verifier contract is funded by X with some amount that will be used for potential reward </li>
+<li>The Problem desciption is posted on ZkComputations UI app</li>
+<li>Problem Solver Y  tries to solve the big computation problem</li>
+<li>If Y finds the solution then Y generates the proof off-chain using zokrates</li>
+<li>Y send transaction to Verifier Contract containing the proof and withdraws half of the amount </li>
+<li>Y is insentivized to reveal the actual solution to X (via email or on-chain) in order to receive the rest of the reward</li>
+<li>X can verify the actual solution and then send the extraReward to Y, otherwise his rating goes down and money are locked forever</li>
+<li>If X and Y finish the flow end to end this constitutes a Nash equilibrium,</li>
+</ol>
+
+# Diagrams
+<h2> Sequence Diagram </h2>
+<img src="https://ascendia.fra1.cdn.digitaloceanspaces.com/ZkComputations.drawio.png" />
+
+<h2> Payoff Matrix (Solution Seeker and Problem Solver) </h2>
+<img src=https://ascendia.fra1.cdn.digitaloceanspaces.com/PayOffTable.png />
+There are 2 Nash Equilibrium at (X,A) = (0,0) and (Z,C) = (2,2).
+In this case (Z,C) has better fiancial outcome for both sides. 
+
+
+
+
+# Install Zokrates and generate proofs
+```bash
+curl -LSfs get.zokrat.es | sh
+# Set export path
+export PATH=$PATH:/Users/tima_t/.zokrates/bin
+cd zokrates-contracts/prime-numbers
+# compile
+zokrates compile -i primes.zok
+# perform the setup phase
+zokrates setup
+# export a solidity verifier
+zokrates export-verifier
+# execute the program
+zokrates compute-witness -a 1087
+# generate a proof of computation
+zokrates generate-proof
+# or verify natively
+zokrates verify
+```
+
+## Start Fe App
 ## Getting Started
 
 First, run the development server:
