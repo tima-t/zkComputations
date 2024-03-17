@@ -1,5 +1,23 @@
-# zkComputations-contracts
-zero-knowledge verifier contracts based on zokrates
+# zkComputations
+Large Computations Market based on zero-knowledge proofs.
+
+# How it works? 
+<ol>
+<li>Solution Seeker X wants to find the answer of Large Computation Problem.</li>
+<li>X generates a verifier contract and deploys it</li>
+<li>The verifier contract is funded by X with some amount that will be used for potential reward </li>
+<li>The Problem desciption is posted on ZkComputations UI app</li>
+<li>Problem Solver Y  tries to solve the big computation problem</li>
+<li>If Y finds the solution then Y generates the proof off-chain using zokrates</li>
+<li>Y send transaction to Verifier Contract containing the proof and withdraws half of the amount </li>
+<li>Y is insentivized to reveal the actual solution to X (via email or on-chain) in order to receive the rest of the reward</li>
+<li>X can verify the actual solution and then send the extraReward to Y, otherwise his rating goes down and money are locked forever</li>
+<li>If X and Y finish the flow end to end this constitutes a Nash equilibrium,</li>
+</ol>
+
+# Diagrams
+
+
 
 # Install Zokrates and generate proofs
 ```bash
