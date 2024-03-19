@@ -1,4 +1,4 @@
-////////////
+// SPDX-License-Identifier: MIT 
 // This file is MIT Licensed.
 //
 // Copyright 2017 Christian Reitwiessner
